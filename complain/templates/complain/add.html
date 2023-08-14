@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add complains</title>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="{% static "images/waluma.png" %}" class="navbar-brand logo" style="width:200px"  />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'add' %}">complains</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">se déconnecter</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="h-100 pt-4" style="background-color:#0082bb">
+        <form class="container mt-3" action="{% url 'add' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-outline mb-4">
+                <label class="form-label" for="select-nature" style="color:white;">Nature</label>
+                <select class="form-select" id="select-nature" name="id_nature" aria-label="Select nature">
+                    <option value="" disabled selected>Select nature</option>
+                    {% for nature in nature_options %}
+                        <option value="{{ nature.id_nature }}">{{ nature.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form6Example7" style="color:white;">Description</label>
+                <textarea class="form-control" id="form6Example7" name="description" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="fichier">Fichier</label>
+                <input type="file" class="form-control-file" id="fichier" name="attached_file">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+            <div class="mt-5 pt-4">
+              {% if messages %}
+                  {% for message in messages %}
+                  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endfor %}
+              {% endif %}
+              </div>
+        </form>
+    </div>
+</body>
+</html>

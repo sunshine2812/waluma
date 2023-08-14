@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte</title>
+</head>
+<body>
+    <h1>Créer un compte</h1>
+    
+    <form method="post" action="{% url 'inscription-manager' %}">
+        {% csrf_token %}
+        
+        <label for="lastname">Nom de famille:</label>
+        <input type="text" name="lastname" required><br>
+        
+        <label for="firstname">Prénom:</label>
+        <input type="text" name="firstname" required><br>
+        
+        <label for="username">Nom d'utilisateur:</label>
+        <input type="text" name="username" required><br>
+        
+        <label for="password">Mot de passe:</label>
+        <input type="password" name="password" required><br>
+        
+        <label for="phone_number">Numéro de téléphone:</label>
+        <input type="text" name="phone_number"><br>
+        
+        <label for="role">Rôle:</label>
+        <select name="role" required>
+            {% for role in roles %}
+                <option value="{{ role.pk }}">{{ role.name }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <button type="submit">Créer le compte</button>
+    </form>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

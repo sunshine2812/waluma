@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="mt-5 pt-4">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+    <div class="container-xxl position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+            <a href="" class="navbar-brand p-0">
+                <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i></h1>
+                <img src="{% static "images/waluma.png" %}" class="navbar-brand logo" style="width:200px"  />
+                
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0 pe-4">
+                    
+                    <a class="nav-link" href="{% url 'home' %}" >Home </a>
+                    <a class="nav-link" href="{% url 'add' %}">complains</a>
+                    <a class="nav-link" href="{% url 'connection' %}">se connecter</a>
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'logout' %}">se déconnecter</a>
+                    {% else %}
+                    <a class="nav-link" href="{% url 'connection' %}">se connecter</a>
+                   
+                    
+                        {% comment %} <div class="dropdown-menu m-0">
+                            <a href="booking.html" class="dropdown-item">Booking</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        </div> {% endcomment %}
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    {% endif %}
+                </div>
+                
+            </div>
+        </nav>
+
+        <div class="container-xxl py-5 bg-dark hero-header mb-5 actif">
+            <div class="container my-5 py-5">
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-6 text-center text-lg-start">
+                        <h1 class="display-3 text-white animated slideInLeft" >BIENVENUE<br>SUR VOTRE ESPACE WALUMA BANK</h1>
+                    
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                        <img class="img-fluid" src="img/hero.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <a href="{% url 'add' %}" class="btn btn-primary animated slideInLeft" style="text-align:center">Faire une réclamation</a>
+    </div>
+        <div class="container-xxl pt-5 pb-3">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Team Members</h5>
+                <h1 class="mb-5">Our Account managers</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="{% static "images/photo4.jpeg" %}" alt="">
+                        </div>
+                        <h5 class="mb-0">Bamba Camara</h5>
+                        <small>account_manager</small>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="{% static "images/photo3.jpeg" %}" alt="">
+                        </div>
+                        <h5 class="mb-0">Ndeye Astou Seck</h5>
+                        <small>account_manager</small>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="{% static "images/photo2.jpeg" %}" alt="">
+                        </div>
+                        <h5 class="mb-0">Fatoumata Sy</h5>
+                        <small>account_manager</small>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            <img class="img-fluid" src="{% static "images/photo1.jpeg" %}" alt="">
+                            
+                        </div>
+                        <h5 class="mb-0">Aminata Faye</h5>
+                        <small>account_manager</small>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+   
+</body>
+</html>

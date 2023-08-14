@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superadmin Login</title>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body>
+    <section class="intro">
+        <div class="bg-image h-100">
+            <div class="mask d-flex align-items-center h-100" style="background-color: #f3f2f2;">
+                <div class="container">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-12 col-lg-9 col-xl-8">
+                            <div class="card" style="border-radius: 1rem;">
+                                <div class="row g-0">
+                                    <div class="col-md-4 d-none d-md-block">
+                                        <img src="{% static "images/photo_co.png" %}"
+                                             alt="login form"
+                                             class="img-fluid"
+                                             style="border-top-left-radius: 1rem; border-bottom-left-radius: 1rem;"
+                                        />
+                                    </div>
+                                    <div class="col-md-8 d-flex align-items-center">
+                                        <div class="card-body py-5 px-4 p-md-5">
+                                            <form method="post" action="{% url 'connection-manager' %}">
+                                                {% csrf_token %}
+                                                <h4 class="fw-bold mb-4" style="color: #92aad0;">Log in to your account</h4>
+                                                <p class="mb-4" style="color: #45526e;">To log in, please fill in these text fields with your username and password.</p>
+     
+                                                <div class="form-outline mb-4">
+                                                    <input type="text" id="username" name="username" class="form-control" required>
+                                                    <label class="form-label" for="username">Username</label>
+                                                </div>
+     
+                                                <div class="form-outline mb-4">
+                                                    <input type="password" id="password" name="password" class="form-control" required>
+                                                    <label class="form-label" for="password">Password</label>
+                                                </div>
+     
+                                                <div class="d-flex justify-content-end pt-1 mb-4">
+                                                    <button class="btn btn-primary btn-rounded" type="submit" style="background-color: #92aad0;">Log in</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

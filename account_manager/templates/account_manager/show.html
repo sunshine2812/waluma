@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+    <link href="{% static "css/style.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+</head>
+<body>
+  
+  {% if user.is_authenticated %}
+      <p>Account Manager connecté : {{ user.username }}</p>
+      <a class="nav-link" href="{% url 'logout_manager' %}">Se déconnecter</a>
+  {% endif %}
+    <div class="container">
+      {% comment %} {% for complaint in complaints %} {% endcomment %}
+        <h1>Les réclamations concernant {{ nature.name }}</h1>
+      
+      {% comment %} {% endfor %} {% endcomment %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Description</th>
+              <th>Email</th>
+              <th>Fichier joint</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.account_number.lastname }}</td>
+                    <td>{{ complaint.account_number.firstname }}</td>
+                    <td>{{ complaint.description }}</td>
+                    <td>{{ complaint.account_number.email }}</td>
+                    <td>{{ complaint.attached_file }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        
+        </table>
+    </div>
+</body>
+</html>
